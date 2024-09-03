@@ -25,14 +25,16 @@ def btn_click():
     btn_text.set("Loading...")
     file_open = askopenfile(parent=root, mode='rb', title="Choose a file", filetypes=[("Pdf files","*.pdf")])
     if file_open:
-        print("file selected")
+        read_pdf = PyPDF2.PdfReader(file_open)
+        page = read_pdf.pages[1]
+        page_content = page.extract_text()
+        print(page_content)
 
 # Browse button
 btn_text = tk.StringVar()                           # creating a var for string
 browse_btn = tk.Button(root,  textvariable=btn_text, bg="brown", height=2, width=10, command=btn_click)
 btn_text.initialize("Browse")                       # initial text to "Browse"
 browse_btn.grid(row=3, column=1)
-
 
 
 root.mainloop()

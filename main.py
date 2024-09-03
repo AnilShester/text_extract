@@ -28,7 +28,15 @@ def btn_click():
         read_pdf = PyPDF2.PdfReader(file_open)
         page = read_pdf.pages[1]
         page_content = page.extract_text()
-        print(page_content)
+
+        # text_box
+        text_box = tk.Text(root, height=40, width=100, padx=15, pady=15)
+        text_box.insert(1.0, page_content)
+        text_box.grid(row=4, columnspan=3, ipadx=1, ipady=5)
+
+        # reset button text to browse
+    btn_text.set("Browse")
+
 
 # Browse button
 btn_text = tk.StringVar()                           # creating a var for string
